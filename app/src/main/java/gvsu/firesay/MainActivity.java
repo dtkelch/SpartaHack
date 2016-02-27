@@ -5,15 +5,32 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.firebase.client.Firebase;
 
+import org.androidannotations.annotations.Click;
+import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
+
+@EActivity
 public class MainActivity extends AppCompatActivity {
 
 
+    @ViewById(R.id.button_up)
+    Button upButton;
+
+    @ViewById(R.id.button_down)
+            Button downButton;
+
+    @ViewById(R.id.button_left)
+            Button leftButton;
+
+    @ViewById(R.id.button_right)
+            Button rightButton;
 
     Firebase myFirebase;
     @Override
@@ -57,5 +74,22 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Click(R.id.button_up)
+    void upWasClicked() {
+        myFirebase.child("up").setValue("clicked");
+    }
+    @Click(R.id.button_down)
+    void downWasClicked() {
+        myFirebase.child("down").setValue("clicked");
+    }
+    @Click(R.id.button_left)
+    void leftWasClicked() {
+        myFirebase.child("left").setValue("clicked");
+    }
+    @Click(R.id.button_right)
+    void rightWasClicked() {
+        myFirebase.child("right").setValue("clicked");
     }
 }

@@ -13,8 +13,38 @@
     tools:showIn="@layout/activity_main"
     tools:context="gvsu.firesay.MainActivity">
 
-    <TextView
-        android:text="Hello World!"
+    <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="UP"
+        android:id="@+id/button_up"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="111dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DOWN"
+        android:id="@+id/button_down"
+        android:layout_below="@+id/button_up"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="133dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LEFT"
+        android:id="@+id/button_left"
+        android:layout_below="@+id/button_up"
+        android:layout_toStartOf="@+id/button_up"
+        android:layout_marginTop="38dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RIGHT"
+        android:id="@+id/button_right"
+        android:layout_alignTop="@+id/button_left"
+        android:layout_toEndOf="@+id/button_up"/>
 </RelativeLayout>
