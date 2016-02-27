@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_id": "firesay-5332e",
+    "project_number": "456529724068",
+    "name": "FireSay"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456529724068:android:520f6ed8d8232e22",
+        "client_id": "android:gvsu.firesay",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "gvsu.firesay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "456529724068-a3r4ah0jnbiu6dqhkba5l52juie3nfdg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "gvsu.firesay",
+            "certificate_hash": "2F86EFBB96DDDAF71F15E92B8AC0A0BC9A4DBBB8"
+          }
+        },
+        {
+          "client_id": "456529724068-raq4nviq52slicp8hcf7m54qleu37kc6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 2
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}
