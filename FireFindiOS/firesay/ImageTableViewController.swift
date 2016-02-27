@@ -44,11 +44,7 @@ class ImageTableViewController: UITableViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        //        //self.friendList.removeAll()
-        //        getFriendsList()
         tableView.reloadData()
-        //        print("--------------")
-        //        print (self.friendList)
     }
     
     override func didReceiveMemoryWarning() {
