@@ -12,10 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.firebase.client.DataSnapshot;
@@ -28,18 +28,32 @@ import java.io.IOException;
 
 public class ImageTester extends AppCompatActivity {
 
+    private static final int DIALOG_RESULT = 2;
     private int PICK_IMAGE_REQUEST = 1;
     public String picture = "";
+    private Button select;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_tester);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Firebase.setAndroidContext(this);
         Firebase myFirebaseRef = new Firebase("https://playingwithfiiire.firebaseio.com/");
+        select = (Button) findViewById(R.id.button);
 
+        select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                // Show only images, no videos or anything else
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                // Always show the chooser (if there are multiple options available)
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -51,12 +65,7 @@ public class ImageTester extends AppCompatActivity {
             }
         });
         
-        Intent intent = new Intent();
-        // Show only images, no videos or anything else
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        // Always show the chooser (if there are multiple options available)
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+
     }
 
 
@@ -79,7 +88,7 @@ public class ImageTester extends AppCompatActivity {
 
 
                 String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
-                Log.d("Encoded image", encodedImage);
+
                 ImageView imageView = (ImageView) findViewById(R.id.imageView);
                 imageView.setImageBitmap(bitmap);
 
@@ -89,7 +98,10 @@ public class ImageTester extends AppCompatActivity {
                     public void onDataChange(DataSnapshot snapshot) {
                         picture = snapshot.getValue().toString();
                     }
-                    @Override public void onCancelled(FirebaseError error) { }
+
+                    @Override
+                    public void onCancelled(FirebaseError error) {
+                    }
                 });
 
             } catch (IOException e) {
@@ -119,7 +131,6 @@ public class ImageTester extends AppCompatActivity {
             Firebase myFirebaseRef = new Firebase("https://playingwithfiiire.firebaseio.com/");
 
 
-
             ImageView imgViewer = (ImageView) findViewById(R.id.imageView);
             byte[] decodeString = Base64.decode(picture, Base64.DEFAULT);
 
@@ -127,11 +138,6 @@ public class ImageTester extends AppCompatActivity {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;
             BitmapFactory.decodeResource(getResources(), R.id.imageView, options);
-
-            //int imageHeight = options.outHeight;
-            //int imageWidth = options.outWidth;
-            //String imageType = options.outMimeType;
-            //Bitmap decodedByte = BitmapFactory.decodeByteArray(decodeString, 0, decodeString.length);
 
             DisplayMetrics dm = new DisplayMetrics();
             getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -185,5 +191,5 @@ public class ImageTester extends AppCompatActivity {
 
     }
 
-
 }
+
