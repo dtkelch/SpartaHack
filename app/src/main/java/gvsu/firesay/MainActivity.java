@@ -13,6 +13,9 @@ import com.firebase.client.Firebase;
 
 public class MainActivity extends AppCompatActivity {
 
+
+
+    Firebase myFirebase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Firebase.setAndroidContext(this);
+        myFirebase = new Firebase("https://incandescent-fire-2307.firebaseio" +
+                ".com/");
+        myFirebase.child("message").setValue("Hey");
     }
 
     @Override
