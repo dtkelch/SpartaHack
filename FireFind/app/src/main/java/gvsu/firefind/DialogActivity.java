@@ -1,5 +1,7 @@
 package gvsu.firefind;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -72,10 +74,14 @@ public class DialogActivity extends AppCompatActivity implements
                     .getText().toString(), desc.getText().toString(),
                 mLastLocation.getLatitude(), mLastLocation.getLongitude()));
         } else {
+            // 0, 0 means no location found with item
             fireFind.myFirebase.child("item").push().setValue(new
                     FireFindItem(name.getText().toString(), desc.getText()
                     .toString(), 0.0, 0.0));
         }
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra("result",1);
+        setResult(Activity.RESULT_OK,returnIntent);
         finish();
     }
 
