@@ -7,8 +7,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.client.Firebase;
 import com.firebase.ui.FirebaseListAdapter;
@@ -47,6 +49,16 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         listView.setAdapter(listAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                FireFindItem item = (FireFindItem) parent.getItemAtPosition
+                        (position);
+                Toast.makeText(MainActivity.this, item.getName(), Toast.LENGTH_SHORT)
+                        .show();
+            }
+        });
     }
 
     @Override
