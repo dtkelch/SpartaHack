@@ -25,7 +25,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         super.viewDidLoad()
         
         // Create a reference to a Firebase location
-        myRootRef = Firebase(url:"https://incandescent-fire-2307.firebaseio.com")
+        //myRootRef = Firebase(url:"https://incandescent-fire-2307.firebaseio.com")
+        myRootRef = Firebase(url:"https://radiant-inferno-1334.firebaseio.com")
         // Write data to Firebase
         
         
@@ -63,7 +64,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             recognizeImage(pickedImage)
 
             //let unwrappedImage = pickedImage
-            //let data = UIImageJPEGRepresentation(unwrappedImage, 0.1) // 0.0 to 1.0 - sets jpeg quality
+            let data = UIImageJPEGRepresentation(pickedImage, 0.1) // 0.0 to 1.0 - sets jpeg quality
             //print(data)
         }
         dismissViewControllerAnimated(true, completion: nil)
