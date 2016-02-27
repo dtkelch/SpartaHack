@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,13 +18,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a1s-BV-9fO">
-                                <rect key="frame" x="20" y="28" width="385" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a1s-BV-9fO">
+                                <rect key="frame" x="20" y="460" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1T-97-xHh">
-                                <rect key="frame" x="20" y="91" width="46" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="poj-Yy-Uwb">
+                                <rect key="frame" x="20" y="28" width="560" height="400"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1T-97-xHh">
+                                <rect key="frame" x="20" y="519" width="560" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VL5-Cx-kGg"/>
@@ -31,8 +35,22 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="H1T-97-xHh" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="2SB-m8-Ub1"/>
+                            <constraint firstItem="H1T-97-xHh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="3xH-Zn-465"/>
+                            <constraint firstItem="a1s-BV-9fO" firstAttribute="top" secondItem="poj-Yy-Uwb" secondAttribute="bottom" constant="32" id="Dta-l3-Ija"/>
+                            <constraint firstItem="a1s-BV-9fO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ICr-Dx-kDu"/>
+                            <constraint firstItem="a1s-BV-9fO" firstAttribute="top" secondItem="poj-Yy-Uwb" secondAttribute="bottom" constant="32" id="RzO-my-iCX"/>
+                            <constraint firstItem="poj-Yy-Uwb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="aF0-fw-e9T"/>
+                            <constraint firstItem="poj-Yy-Uwb" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="jQi-vc-Hrs"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="H1T-97-xHh" secondAttribute="bottom" constant="51" id="tCY-J8-8sl"/>
+                            <constraint firstItem="a1s-BV-9fO" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="vvT-6f-JcM"/>
+                            <constraint firstItem="poj-Yy-Uwb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="vyT-dp-6Jp"/>
+                            <constraint firstItem="H1T-97-xHh" firstAttribute="top" secondItem="a1s-BV-9fO" secondAttribute="bottom" constant="29" id="zNz-KW-ff0"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="imageView" destination="poj-Yy-Uwb" id="wf2-O6-796"/>
                         <outlet property="text" destination="a1s-BV-9fO" id="pvI-gN-ExH"/>
                     </connections>
                 </viewController>
