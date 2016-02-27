@@ -2,10 +2,12 @@ package gvsu.firefind;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -38,20 +40,32 @@ public class ItemAdapter extends ArrayAdapter<FireFindItem> {
             holder = new ItemHolder();
             holder.nameText = (TextView)row.findViewById(R.id.textViewName);
             holder.descText = (TextView)row.findViewById(R.id.textViewDesc);
-
+            holder.imageView = (ImageView)row.findViewById(R.id.imageView);
             row.setTag(holder);
         } else {
             holder = (ItemHolder)row.getTag();
         }
         FireFindItem item = items.get(position);
-        holder.descText.setText(item.getDesc());
-        holder.nameText.setText(item.getName());
+        try {
+            String img = item.getImage();
+            byte[] decodeString = Base64.decode(img, Base64.DEFAULT);
 
+            holder.descText.setText(item.getDesc());
+            holder.nameText.setText(item.getName());
+
+            holder.imageView.setImageBitmap(Utils.decodeSampledBitmapFromResource
+                    (decodeString, 100, 100));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return row;
     }
+
+
 
     static class ItemHolder {
         TextView nameText;
         TextView descText;
+        ImageView imageView;
     }
 }

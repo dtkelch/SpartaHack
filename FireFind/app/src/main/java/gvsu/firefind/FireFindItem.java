@@ -6,6 +6,7 @@ package gvsu.firefind;
 public class FireFindItem {
     String desc;
     String name;
+    String image;
     double lat;
     double lng;
 
@@ -17,6 +18,22 @@ public class FireFindItem {
         this.name = name;
         this.lat = lat;
         this.lng = lng;
+    }
+
+    public FireFindItem(String desc, String name, String image, double lat, double lng) {
+        this.desc = desc;
+        this.name = name;
+        this.image = image;
+        this.lat = lat;
+        this.lng = lng;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getDesc() {
