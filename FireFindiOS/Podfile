@@ -5,6 +5,7 @@ use_frameworks!
 
 target 'firesay' do
   pod 'Firebase', '>= 2.5.0'
+  pod 'AFNetworking', '~> 2.0'
 end
 
 target 'firesayTests' do

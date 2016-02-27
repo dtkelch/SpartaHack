@@ -15,6 +15,9 @@
 		904A77AD1C81806400077E1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 904A77AB1C81806400077E1A /* LaunchScreen.storyboard */; };
 		904A77B81C81806400077E1A /* firesayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904A77B71C81806400077E1A /* firesayTests.swift */; };
 		904A77C31C81806400077E1A /* firesayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 904A77C21C81806400077E1A /* firesayUITests.swift */; };
+		90AEB24E1C821A240036A36C /* ClarifaiRecognitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AEB24D1C821A240036A36C /* ClarifaiRecognitionViewController.swift */; };
+		90AEB2541C821B790036A36C /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AEB2521C821B790036A36C /* Credentials.swift */; };
+		90AEB25C1C821C9C0036A36C /* ClarifaiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AEB25A1C821C9C0036A36C /* ClarifaiClient.m */; };
 		E24BFCCC4EED63CD6C0FE6A0 /* Pods_firesay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C74008EEDA6EA1122A2994 /* Pods_firesay.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +58,10 @@
 		904A77C41C81806400077E1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		906838091C8186F300BD576C /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Firebase.framework; path = "Pods/../build/Debug-iphoneos/Firebase.framework"; sourceTree = "<group>"; };
 		90AEB24A1C8187760036A36C /* firesay-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "firesay-Bridging-Header.h"; sourceTree = "<group>"; };
+		90AEB24D1C821A240036A36C /* ClarifaiRecognitionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClarifaiRecognitionViewController.swift; sourceTree = "<group>"; };
+		90AEB2521C821B790036A36C /* Credentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Credentials.swift; path = "../../../clarifai-ios-starter/ClarifaiApiDemo/Credentials.swift"; sourceTree = "<group>"; };
+		90AEB25A1C821C9C0036A36C /* ClarifaiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClarifaiClient.m; sourceTree = "<group>"; };
+		90AEB25B1C821C9C0036A36C /* ClarifaiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClarifaiClient.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,14 +124,18 @@
 		904A779E1C81806400077E1A /* firesay */ = {
 			isa = PBXGroup;
 			children = (
+				90AEB2521C821B790036A36C /* Credentials.swift */,
 				904A779F1C81806400077E1A /* AppDelegate.swift */,
 				904A77A11C81806400077E1A /* ViewController.swift */,
+				90AEB24D1C821A240036A36C /* ClarifaiRecognitionViewController.swift */,
 				904A77A31C81806400077E1A /* Main.storyboard */,
 				904A77A91C81806400077E1A /* Assets.xcassets */,
 				904A77AB1C81806400077E1A /* LaunchScreen.storyboard */,
 				904A77AE1C81806400077E1A /* Info.plist */,
 				904A77A61C81806400077E1A /* firesay.xcdatamodeld */,
 				90AEB24A1C8187760036A36C /* firesay-Bridging-Header.h */,
+				90AEB25A1C821C9C0036A36C /* ClarifaiClient.m */,
+				90AEB25B1C821C9C0036A36C /* ClarifaiClient.h */,
 			);
 			path = firesay;
 			sourceTree = "<group>";
@@ -337,9 +348,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90AEB2541C821B790036A36C /* Credentials.swift in Sources */,
 				904A77A81C81806400077E1A /* firesay.xcdatamodeld in Sources */,
+				90AEB24E1C821A240036A36C /* ClarifaiRecognitionViewController.swift in Sources */,
 				904A77A21C81806400077E1A /* ViewController.swift in Sources */,
 				904A77A01C81806400077E1A /* AppDelegate.swift in Sources */,
+				90AEB25C1C821C9C0036A36C /* ClarifaiClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
