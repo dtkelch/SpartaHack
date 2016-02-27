@@ -31,7 +31,8 @@ dependencies {
     compile 'com.android.support:design:23.1.1'
     compile 'com.firebase:firebase-client-android:2.5.2+'
     apt "org.androidannotations:androidannotations:3.3.2"
-    compile "org.androidannotations:androidannotations-api:3.3.2"
+    compile 'org.androidannotations:androidannotations-api:3.3.2'
+    compile 'com.firebaseui:firebase-ui:0.3.1'
 }
 apt {
     arguments {

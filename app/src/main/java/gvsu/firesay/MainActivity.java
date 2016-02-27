@@ -4,12 +4,17 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.ui.FirebaseListAdapter;
 
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
@@ -24,17 +29,25 @@ public class MainActivity extends AppCompatActivity {
     Button upButton;
 
     @ViewById(R.id.button_down)
-            Button downButton;
+    Button downButton;
 
     @ViewById(R.id.button_left)
-            Button leftButton;
+    Button leftButton;
 
     @ViewById(R.id.button_right)
-            Button rightButton;
+    Button rightButton;
+
+    @ViewById(R.id.listView)
+    ListView listView;
+
+    @ViewById
+    EditText editText;
 
     FireSayButton up, down, left, right;
 
     Firebase myFirebase;
+    Firebase fireChat;
+    FirebaseListAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,33 +65,18 @@ public class MainActivity extends AppCompatActivity {
         Firebase.setAndroidContext(this);
         myFirebase = new Firebase("https://incandescent-fire-2307.firebaseio" +
                 ".com/");
+        fireChat = myFirebase.child("chat");
         Firebase fireButtons = myFirebase.child("buttons");
         fireButtons.addChildEventListener(new ChildEventListener() {
 
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                FireSayButton button = dataSnapshot.getValue(FireSayButton
-                            .class);
-                    Button uiButton = findButtonByName(button.getDirection());
-                    if (button.isLongClicked()) {
-                        uiButton.setBackgroundColor(button
-                                .getColorLongClicked());
-                    } else {
-                        uiButton.setBackgroundColor(button.getColorClicked());
-                    }
+                setButtonColors(dataSnapshot);
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                    FireSayButton button = dataSnapshot.getValue(FireSayButton
-                            .class);
-                    Button uiButton = findButtonByName(button.getDirection());
-                    if (button.isLongClicked()) {
-                        uiButton.setBackgroundColor(button
-                                .getColorLongClicked());
-                    } else {
-                        uiButton.setBackgroundColor(button.getColorClicked());
-                    }
+                setButtonColors(dataSnapshot);
             }
 
             @Override
@@ -96,6 +94,30 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        mAdapter = new FirebaseListAdapter<ChatMessage>(this, ChatMessage
+                .class, android.R.layout.two_line_list_item, fireChat) {
+            @Override
+            protected void populateView(View view, ChatMessage chatMessage, int i) {
+                ((TextView)view.findViewById(android.R.id.text1)).setText
+                        (chatMessage.getMessage());
+                ((TextView)view.findViewById(android.R.id.text2)).setText
+                        (chatMessage.getName());
+
+            }
+        };
+        listView.setAdapter(mAdapter);
+    }
+
+    private void setButtonColors(DataSnapshot dataSnapshot) {
+        FireSayButton button = dataSnapshot.getValue(FireSayButton
+                    .class);
+        Button uiButton = findButtonByName(button.getDirection());
+        if (button.isLongClicked()) {
+            uiButton.setBackgroundColor(button
+                    .getColorLongClicked());
+        } else {
+            uiButton.setBackgroundColor(button.getColorClicked());
+        }
     }
 
     private Button findButtonByName(String direction) {
@@ -113,6 +135,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Click(R.id.button_go)
+    void goWasClicked() {
+        fireChat.push().setValue(new ChatMessage("me", editText.getText()
+                .toString()));
+        editText.setText("");
+    }
 
     @Click(R.id.button_up)
     void upWasClicked() {
