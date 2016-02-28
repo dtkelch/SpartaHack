@@ -7,9 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.loopj.android.image.SmartImageView;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.util.Map;
@@ -42,7 +44,7 @@ public class ItemAdapter extends ArrayAdapter<FireFindItem> {
             holder = new ItemHolder();
             holder.nameText = (TextView)row.findViewById(R.id.textViewName);
             holder.descText = (TextView)row.findViewById(R.id.textViewDesc);
-            holder.imageView = (SmartImageView)row.findViewById(R.id
+            holder.imageView = (ImageView)row.findViewById(R.id
                     .imageView);
             row.setTag(holder);
         } else {
@@ -56,7 +58,9 @@ public class ItemAdapter extends ArrayAdapter<FireFindItem> {
             return row;
         }
 
-        holder.imageView.setImageUrl(uploadResult.get("url").toString());
+        Picasso.with(context).load(uploadResult.get("url").toString()).fit()
+                .memoryPolicy(MemoryPolicy.NO_CACHE).into
+                (holder.imageView);
 
         return row;
     }
@@ -65,6 +69,6 @@ public class ItemAdapter extends ArrayAdapter<FireFindItem> {
     static class ItemHolder {
         TextView nameText;
         TextView descText;
-        SmartImageView imageView;
+        ImageView imageView;
     }
 }

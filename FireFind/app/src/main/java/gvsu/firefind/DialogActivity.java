@@ -111,19 +111,7 @@ public class DialogActivity extends AppCompatActivity implements
 
     @Click(R.id.done_button)
     void doneWasClicked() {
-        FireFindItem item = new FireFindItem();
-        item.setUploadResult(uploadResult);
-        Log.e("WOW", uploadResult.get("url").toString());
-        if (mLastLocation != null) {
-            item.setLat(mLastLocation.getLatitude());
-            item.setLng(mLastLocation.getLongitude());
-        } else {
-            item.setLat(0.0);
-            item.setLng(0.0);
-        }
-        item.setDesc(desc.getText().toString());
-        item.setName(name.getText().toString());
-        fireFind.myFirebase.child("item").push().setValue(item);
+
         Intent returnIntent = new Intent();
         returnIntent.putExtra("result",DONE_RESULT);
         setResult(Activity.RESULT_OK,returnIntent);
@@ -185,6 +173,19 @@ public class DialogActivity extends AppCompatActivity implements
                             ObjectUtils
                                     .emptyMap());
             Log.e("WOW", uploadResult.get("url").toString());
+            FireFindItem item = new FireFindItem();
+            item.setUploadResult(uploadResult);
+            Log.e("WOW", uploadResult.get("url").toString());
+            if (mLastLocation != null) {
+                item.setLat(mLastLocation.getLatitude());
+                item.setLng(mLastLocation.getLongitude());
+            } else {
+                item.setLat(0.0);
+                item.setLng(0.0);
+            }
+            item.setDesc(desc.getText().toString());
+            item.setName(name.getText().toString());
+            fireFind.myFirebase.child("item").push().setValue(item);
         } catch (IOException e) {
             e.printStackTrace();
         }
