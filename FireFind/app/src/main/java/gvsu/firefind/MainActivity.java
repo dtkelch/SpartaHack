@@ -108,6 +108,19 @@ public class MainActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                FireFindItem item = (FireFindItem)parent
+                        .getItemAtPosition
+                        (position);
+                fireFind.myFirebase.child("item/" + item.getName())
+                        .removeValue();
+                listAdapter.remove(item);
+                listAdapter.notifyDataSetChanged();
+                return false;
+            }
+        });
     }
 
     @Override

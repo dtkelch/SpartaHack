@@ -87,7 +87,7 @@ public class FireFindItem {
         if (tags == null)
             return "";
         for (String t : tags){
-            fmt += t + "\t";
+            fmt += t + "\t\t\t";
         }
         return fmt;
     }
