@@ -1,0 +1,6 @@
+framework module Pods_firesay {
+  umbrella header "Pods-firesay-umbrella.h"
+
+  export *
+  module * { export * }
+}
