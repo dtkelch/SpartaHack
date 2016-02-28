@@ -15,6 +15,9 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.EditText;
 
+import com.clarifai.api.RecognitionRequest;
+import com.clarifai.api.RecognitionResult;
+import com.clarifai.api.Tag;
 import com.cloudinary.utils.ObjectUtils;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -28,6 +31,8 @@ import org.androidannotations.annotations.ViewById;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @EActivity
@@ -37,6 +42,7 @@ public class DialogActivity extends AppCompatActivity implements
 
     private static final int PICK_IMAGE_REQUEST = 2;
     private static final int DONE_RESULT = 1;
+    private static final int REQUEST_IMAGE_CAPTURE = 3;
     @App
     FireFindApplication fireFind;
 
@@ -51,6 +57,9 @@ public class DialogActivity extends AppCompatActivity implements
     Location mLastLocation;
 
     Map uploadResult;
+
+    File photoFile;
+
     // Storage Permissions
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
@@ -146,6 +155,26 @@ public class DialogActivity extends AppCompatActivity implements
         startActivityForResult(intent,PICK_IMAGE_REQUEST);
     }
 
+    @Click(R.id.take_button)
+    void takePhoto() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            try {
+                photoFile = Utils.createImageFile();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                // Error occurred while creating the File
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                        Uri.fromFile(photoFile));
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            }
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -162,6 +191,11 @@ public class DialogActivity extends AppCompatActivity implements
             cursor.close();
             File f = new File(picturePath);
             uploadPhoto(f);
+        } else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode ==
+                RESULT_OK) {
+            // photoFile = file path of pic
+            if (photoFile != null)
+                uploadPhoto(photoFile);
         }
     }
 
@@ -172,10 +206,18 @@ public class DialogActivity extends AppCompatActivity implements
                     (f,
                             ObjectUtils
                                     .emptyMap());
-            Log.e("WOW", uploadResult.get("url").toString());
             FireFindItem item = new FireFindItem();
+            List<RecognitionResult> results =  fireFind.clarifai.recognize
+                    (new RecognitionRequest(f));
+            List<String> stringTags = new ArrayList<>();
+            for (RecognitionResult r : results) {
+                List<Tag> tags = r.getTags();
+                for (Tag t : tags){
+                    stringTags.add(t.getName());
+                }
+            }
+            item.setTags(stringTags);
             item.setUploadResult(uploadResult);
-            Log.e("WOW", uploadResult.get("url").toString());
             if (mLastLocation != null) {
                 //fireFind.myGeoFire.setLocation("Nearby Finds",new GeoLocation(mLastLocation.getLatitude(),mLastLocation.getLongitude()));
                 item.setLat(mLastLocation.getLatitude());
