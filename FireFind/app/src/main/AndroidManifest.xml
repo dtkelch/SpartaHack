@@ -4,7 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
         android:name=".FireFindApplication_"
         android:allowBackup="true"
@@ -31,6 +32,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="gvsu.firefind.MainActivity_" />
         </activity>
+        <meta-data android:name="CLOUDINARY_URL"
+                   android:value="cloudinary://825657132193814:yVkd9Klr2cHXkDMCe_RDZ3AITRI@dwhg3uhwl"/>
     </application>
 
 </manifest>

@@ -1,12 +1,14 @@
 package gvsu.firefind;
 
+import java.util.Map;
+
 /**
  * Created by droidowl on 2/27/16.
  */
 public class FireFindItem {
     String desc;
     String name;
-    String image;
+    Map uploadResult;
     double lat;
     double lng;
 
@@ -20,20 +22,21 @@ public class FireFindItem {
         this.lng = lng;
     }
 
-    public FireFindItem(String desc, String name, String image, double lat, double lng) {
+    public FireFindItem(String desc, String name, Map uploadResult, double lat, double
+            lng) {
         this.desc = desc;
         this.name = name;
-        this.image = image;
+        this.uploadResult = uploadResult;
         this.lat = lat;
         this.lng = lng;
     }
 
-    public String getImage() {
-        return image;
+    public Map getUploadResult() {
+        return uploadResult;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setUploadResult(Map uploadResult) {
+        this.uploadResult = uploadResult;
     }
 
     public String getDesc() {

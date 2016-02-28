@@ -2,24 +2,27 @@ package gvsu.firefind;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Base64;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.loopj.android.image.SmartImageView;
+
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by droidowl on 2/27/16.
  */
-
 public class ItemAdapter extends ArrayAdapter<FireFindItem> {
     Context context;
     int id;
     List<FireFindItem> items;
+    private Bitmap bitmap;
+    ItemHolder holder = null;
 
     public ItemAdapter(Context context, int resource, List<FireFindItem> objects) {
         super(context, resource, objects);
@@ -32,7 +35,6 @@ public class ItemAdapter extends ArrayAdapter<FireFindItem> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         View row = convertView;
-        ItemHolder holder = null;
 
         if (row == null) {
             LayoutInflater inflater = ((Activity)context).getLayoutInflater();
@@ -40,32 +42,29 @@ public class ItemAdapter extends ArrayAdapter<FireFindItem> {
             holder = new ItemHolder();
             holder.nameText = (TextView)row.findViewById(R.id.textViewName);
             holder.descText = (TextView)row.findViewById(R.id.textViewDesc);
-            holder.imageView = (ImageView)row.findViewById(R.id.imageView);
+            holder.imageView = (SmartImageView)row.findViewById(R.id
+                    .imageView);
             row.setTag(holder);
         } else {
             holder = (ItemHolder)row.getTag();
         }
         FireFindItem item = items.get(position);
-        try {
-            String img = item.getImage();
-            byte[] decodeString = Base64.decode(img, Base64.DEFAULT);
-
-            holder.descText.setText(item.getDesc());
-            holder.nameText.setText(item.getName());
-
-            holder.imageView.setImageBitmap(Utils.decodeSampledBitmapFromResource
-                    (decodeString, 100, 100));
-        } catch (Exception e) {
-            e.printStackTrace();
+        Map uploadResult = item.getUploadResult();
+        holder.descText.setText(item.getDesc());
+        holder.nameText.setText(item.getName());
+        if (uploadResult == null)  {
+            return row;
         }
+
+        holder.imageView.setImageUrl(uploadResult.get("url").toString());
+
         return row;
     }
-
 
 
     static class ItemHolder {
         TextView nameText;
         TextView descText;
-        ImageView imageView;
+        SmartImageView imageView;
     }
 }

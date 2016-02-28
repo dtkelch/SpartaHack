@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 /**
  * Created by droidowl on 2/27/16.
  */
+
 public class Utils {
     public static Bitmap decodeSampledBitmapFromResource(byte[] res,
                                                          int reqWidth, int reqHeight) {
