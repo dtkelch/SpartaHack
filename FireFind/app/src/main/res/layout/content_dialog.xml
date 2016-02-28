@@ -38,6 +38,25 @@
         android:layout_height="wrap_content"
         android:text="DONE"
         android:id="@+id/done_button"
-        android:layout_below="@+id/desc"
+        android:layout_below="@+id/photo_button"
         android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose Photo"
+        android:id="@+id/photo_button"
+        android:layout_below="@+id/desc"
+        android:layout_alignStart="@+id/desc"
+        android:layout_toStartOf="@+id/done_button"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Take Photo"
+        android:id="@+id/take_button"
+        android:layout_below="@+id/desc"
+        android:layout_alignEnd="@+id/desc"
+        android:layout_toEndOf="@+id/done_button"
+        android:layout_above="@+id/done_button"/>
 </RelativeLayout>
