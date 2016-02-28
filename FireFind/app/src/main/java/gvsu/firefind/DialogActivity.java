@@ -177,6 +177,7 @@ public class DialogActivity extends AppCompatActivity implements
             item.setUploadResult(uploadResult);
             Log.e("WOW", uploadResult.get("url").toString());
             if (mLastLocation != null) {
+                //fireFind.myGeoFire.setLocation("Nearby Finds",new GeoLocation(mLastLocation.getLatitude(),mLastLocation.getLongitude()));
                 item.setLat(mLastLocation.getLatitude());
                 item.setLng(mLastLocation.getLongitude());
             } else {
