@@ -1,7 +1,9 @@
 package gvsu.firefind;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -12,7 +14,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
@@ -93,8 +94,18 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 FireFindItem item = (FireFindItem) parent.getItemAtPosition
                         (position);
-                Toast.makeText(MainActivity.this, item.getName(), Toast.LENGTH_SHORT)
-                        .show();
+                AlertDialog.Builder builder = new AlertDialog.Builder
+                        (MainActivity.this);
+                builder.setMessage(item.toString());
+                builder.setTitle("Tags for the photo are:");
+                builder.setPositiveButton("Sweet", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
     }
@@ -156,11 +167,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
             if (resultCode == RESULT_OK) {
                 updateList();
+                listAdapter.notifyDataSetChanged();
             }
-        }
     }
 
     private void updateList() {

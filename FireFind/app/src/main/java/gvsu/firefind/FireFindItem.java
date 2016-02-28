@@ -1,5 +1,6 @@
 package gvsu.firefind;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -11,6 +12,7 @@ public class FireFindItem {
     Map uploadResult;
     double lat;
     double lng;
+    List<String> tags;
 
     public FireFindItem() {
     }
@@ -29,6 +31,14 @@ public class FireFindItem {
         this.uploadResult = uploadResult;
         this.lat = lat;
         this.lng = lng;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
     }
 
     public Map getUploadResult() {
@@ -69,5 +79,16 @@ public class FireFindItem {
 
     public void setLng(double lng) {
         this.lng = lng;
+    }
+
+    @Override
+    public String toString() {
+        String fmt ="";
+        if (tags == null)
+            return "";
+        for (String t : tags){
+            fmt += t + "\t";
+        }
+        return fmt;
     }
 }

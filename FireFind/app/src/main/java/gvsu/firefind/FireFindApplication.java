@@ -2,6 +2,7 @@ package gvsu.firefind;
 
 import android.app.Application;
 
+import com.clarifai.api.ClarifaiClient;
 import com.cloudinary.Cloudinary;
 import com.firebase.client.Firebase;
 
@@ -20,6 +21,8 @@ public class FireFindApplication extends Application {
 
     Cloudinary cloudinary;
 
+    ClarifaiClient clarifai;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -27,6 +30,7 @@ public class FireFindApplication extends Application {
         myFirebase = new Firebase("https://incandescent-fire-2307.firebaseio" +
                 ".com/");
         Map config = new HashMap();
+        clarifai = new ClarifaiClient("xNBvko_SJRCQZxgO9sAuyaml7Zk5rtuAvUG6NNku", "i8ifP2bcvbjZq9yx0-P-hPznLQqjAFPWjOHDHV0C");
         config.put("cloud_name", "dwhg3uhwl");
         config.put("api_key", "825657132193814");
         config.put("api_secret", "yVkd9Klr2cHXkDMCe_RDZ3AITRI");
