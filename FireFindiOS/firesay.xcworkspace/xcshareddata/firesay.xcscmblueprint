@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "2D5E448C726149A35F2D480CB7A9B604133450AF",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "2D5E448C726149A35F2D480CB7A9B604133450AF" : 0,
+    "97603AB76853703C83BD018424E6DBA7AE1FC705" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "22850D71-258B-4BE2-A642-477DA2B3D59D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "2D5E448C726149A35F2D480CB7A9B604133450AF" : "sweetstuff\/",
+    "97603AB76853703C83BD018424E6DBA7AE1FC705" : "clarifai-ios-starter\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "firesay",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "FireFindiOS\/firesay.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/dtkelch\/sweetstuff",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2D5E448C726149A35F2D480CB7A9B604133450AF"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:Clarifai\/clarifai-ios-starter.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "97603AB76853703C83BD018424E6DBA7AE1FC705"
+    }
+  ]
+}
