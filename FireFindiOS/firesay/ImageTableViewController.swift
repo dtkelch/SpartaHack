@@ -7,16 +7,21 @@
 //
 
 import UIKit
+import Firebase
 
 class ImageTableViewController: UITableViewController {
 
-    var results = [String]()
+    var results = ["hello1", "hello2", "hello3"]
+    var messages = [Message]()
+    var imagesRef:Firebase!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupFirebase()
 
         tableView.reloadData()
-        
+        print("-----------------------")
 
 
         // Uncomment the following line to preserve selection between presentations
@@ -28,19 +33,33 @@ class ImageTableViewController: UITableViewController {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        getResults()
+        print(messages)
 
         tableView.reloadData()
-        print("--------------")
-        print (self.results)
+//        print("--------------")
+//        print (self.results)
     }
     
     func getResults(){
-        results.append("hello1")
-        results.append("hello2")
-        results.append("hello3")
+        
     }
     
+    func setupFirebase() {
+        // *** STEP 2: SETUP FIREBASE
+        imagesRef = Firebase(url:"https://radiant-inferno-1334.firebaseio.com")
+        
+        // *** STEP 4: RECEIVE MESSAGES FROM FIREBASE (limited to latest 25 messages)
+        imagesRef.queryLimitedToNumberOfChildren(25).observeEventType(FEventType.ChildAdded, withBlock: { (snapshot) in
+            let title = snapshot.value["title"] as? String
+            //let sender = snapshot.value["sender"] as? String
+            let imageUrl = snapshot.value["image"] as? String
+            let results = snapshot.value["results"] as! [String]
+            
+            let message = Message(title: title, imageUrl: imageUrl, results: results)
+            self.messages.append(message)
+            print(self.messages)
+        })
+    }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -61,7 +80,8 @@ class ImageTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return results.count
+        print(messages.count)
+        return messages.count
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -72,8 +92,8 @@ class ImageTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: UITableViewCell
         cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-        cell.textLabel!.text = self.results[indexPath.row]
-        print(self.results[indexPath.row])
+        cell.textLabel!.text = self.messages[indexPath.row].title()
+        print(self.messages[indexPath.row].title())
         //var viewcontroller = self.storyboard! .instantiateViewControllerWithIdentifier("ProfileDetail")
         
         
@@ -81,6 +101,21 @@ class ImageTableViewController: UITableViewController {
         
         return cell
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "imageDetailView" {
+            if let indexPath = self.tableView.indexPathForSelectedRow {
+                let result = messages[indexPath.row]
+                let controller = segue.destinationViewController as! ImageDetailViewController
+                controller.result = result
+                
+            }
+            
+        }
+        
+    }
+
 
 
     /*

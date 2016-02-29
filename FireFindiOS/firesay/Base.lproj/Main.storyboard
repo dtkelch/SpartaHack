@@ -37,7 +37,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="poj-Yy-Uwb">
-                                <rect key="frame" x="20" y="28" width="560" height="400"/>
+                                <rect key="frame" x="20" y="28" width="560" height="347"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="53r-cj-CxO">
                                 <rect key="frame" x="20" y="436" width="560" height="89"/>
@@ -56,12 +56,19 @@
                                     <action selector="buttonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VL5-Cx-kGg"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1uv-7y-yxX">
+                                <rect key="frame" x="20" y="393" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="H1T-97-xHh" firstAttribute="top" secondItem="53r-cj-CxO" secondAttribute="bottom" constant="8" symbolic="YES" id="0ee-1k-oLP"/>
+                            <constraint firstItem="1uv-7y-yxX" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="0gv-LK-oOH"/>
                             <constraint firstItem="poj-Yy-Uwb" firstAttribute="leading" secondItem="53r-cj-CxO" secondAttribute="leading" id="A0f-v3-Tft"/>
                             <constraint firstItem="53r-cj-CxO" firstAttribute="leading" secondItem="H1T-97-xHh" secondAttribute="leading" id="PKj-5Q-quQ"/>
+                            <constraint firstItem="1uv-7y-yxX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="PRR-Hq-WRw"/>
                             <constraint firstItem="53r-cj-CxO" firstAttribute="top" secondItem="poj-Yy-Uwb" secondAttribute="bottom" constant="8" symbolic="YES" id="X4j-TR-eUV"/>
                             <constraint firstItem="H1T-97-xHh" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="XBI-M1-NcC"/>
                             <constraint firstItem="53r-cj-CxO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Y1n-WS-3gQ"/>
@@ -75,31 +82,13 @@
                     <connections>
                         <outlet property="button" destination="H1T-97-xHh" id="abR-h7-NlP"/>
                         <outlet property="imageView" destination="poj-Yy-Uwb" id="jpP-tF-oDO"/>
+                        <outlet property="textField" destination="1uv-7y-yxX" id="D8G-zY-NNh"/>
                         <outlet property="textView" destination="53r-cj-CxO" id="gbq-Zv-OXx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1041" y="1"/>
-        </scene>
-        <!--Item-->
-        <scene sceneID="U1h-id-PNN">
-            <objects>
-                <viewController id="uHz-4p-lF9" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="KCI-0Y-u7F"/>
-                        <viewControllerLayoutGuide type="bottom" id="M3W-vw-myh"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="qeL-pp-xyp">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="MV8-fJ-FKB"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="F2j-cB-irW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2623" y="990"/>
         </scene>
         <!--Item-->
         <scene sceneID="vgL-nc-aRs">
@@ -145,7 +134,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="IM4-fW-QQq" kind="show" id="hnH-Z1-nG2"/>
+                                    <segue destination="IM4-fW-QQq" kind="show" identifier="imageDetailView" id="hnH-Z1-nG2"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -180,10 +169,10 @@
             </objects>
             <point key="canvasLocation" x="313" y="666"/>
         </scene>
-        <!--View Controller-->
+        <!--Image Detail View Controller-->
         <scene sceneID="xJg-Ay-X9L">
             <objects>
-                <viewController id="IM4-fW-QQq" customClass="ViewController" customModule="firesay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="IM4-fW-QQq" customClass="ImageDetailViewController" customModule="firesay" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kTA-GC-ETZ"/>
                         <viewControllerLayoutGuide type="bottom" id="7B5-mh-25u"/>
@@ -216,6 +205,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uDI-jv-KQQ"/>
+                    <connections>
+                        <outlet property="textView" destination="hVP-sd-TR5" id="GOe-79-6pV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KEo-IE-9wP" sceneMemberID="firstResponder"/>
             </objects>

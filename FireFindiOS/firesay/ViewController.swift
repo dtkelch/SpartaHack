@@ -12,6 +12,7 @@ import Firebase
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     
+    @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var textView: UITextView!
@@ -19,6 +20,8 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
     //    var imagePicker: UIImagePickerController!
     
     var imagesRef:Firebase!
+    
+    
     private lazy var client : ClarifaiClient = ClarifaiClient(appID: clarifaiClientID, appSecret: clarifaiClientSecret)
     
     override func viewDidLoad() {
@@ -68,16 +71,19 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             //let unwrappedImage = pickedImage
             //let data = UIImageJPEGRepresentation(pickedImage, 0.1) // 0.0 to 1.0 - sets jpeg quality
 
-            sendToFirebase()
             //print(data)
         }
         dismissViewControllerAnimated(true, completion: nil)
 
     }
     
-    func sendToFirebase(){
-        let results = textView.text
+    func sendToFirebase(title:String, results:[String]!){
         print(results)
+        imagesRef.childByAutoId().setValue([
+            "title":title,
+            "image":"img_str",
+            "results":results
+            ])
     }
     
     private func recognizeImage(image: UIImage!){
@@ -92,6 +98,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         // Encode as a JPEG.
         let jpeg = UIImageJPEGRepresentation(scaledImage, 0.9)!
         //var txtResults = [String]()
+        //var tempResults = [AnyObject]()
         // Send the JPEG to Clarifai for standard image tagging.
         client.recognizeJpegs([jpeg]) {
             (results: [ClarifaiResult]?, error: NSError?) in
@@ -101,6 +108,11 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             } else {
                 print("in recognizeimage 1 ", results![0].tags)
                 self.textView.text = "Tags:\n" + results![0].tags.joinWithSeparator(", ")
+                //tempResults = self.copyArray(results![0].tags)
+                if let title = self.textField.text{
+                    self.sendToFirebase(title, results: results![0].tags as [String])
+
+                }
                 //let temp = results![0].tags
                 //txtResults = temp.map{$0.copy() as! String}
                 //txtResults = NSArray(array: temp, copyItems: true) as! [String]
@@ -112,9 +124,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             self.button.enabled = true
         }
         //print("in recognizeimage 3 ", txtResults)
-        //return txtResults
     }
 
+    func copyArray(arr:[AnyObject]) -> [AnyObject]{
+        var results = [AnyObject]()
+        results = arr.map{$0.copy()}
+        
+        return results
+    }
     
     
     

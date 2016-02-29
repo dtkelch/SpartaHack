@@ -18,6 +18,8 @@
 		90AEB2541C821B790036A36C /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AEB2521C821B790036A36C /* Credentials.swift */; };
 		90AEB25C1C821C9C0036A36C /* ClarifaiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AEB25A1C821C9C0036A36C /* ClarifaiClient.m */; };
 		90AEB2621C822D500036A36C /* ImageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AEB2611C822D500036A36C /* ImageTableViewController.swift */; };
+		90AEB2641C8270B00036A36C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AEB2631C8270B00036A36C /* Message.swift */; };
+		90AEB2681C82AD820036A36C /* ImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90AEB2671C82AD820036A36C /* ImageDetailViewController.swift */; };
 		E24BFCCC4EED63CD6C0FE6A0 /* Pods_firesay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C74008EEDA6EA1122A2994 /* Pods_firesay.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +64,8 @@
 		90AEB25A1C821C9C0036A36C /* ClarifaiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClarifaiClient.m; sourceTree = "<group>"; };
 		90AEB25B1C821C9C0036A36C /* ClarifaiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClarifaiClient.h; sourceTree = "<group>"; };
 		90AEB2611C822D500036A36C /* ImageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTableViewController.swift; sourceTree = "<group>"; };
+		90AEB2631C8270B00036A36C /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		90AEB2671C82AD820036A36C /* ImageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +130,7 @@
 			children = (
 				904A779F1C81806400077E1A /* AppDelegate.swift */,
 				904A77A11C81806400077E1A /* ViewController.swift */,
+				90AEB2671C82AD820036A36C /* ImageDetailViewController.swift */,
 				90AEB2611C822D500036A36C /* ImageTableViewController.swift */,
 				904A77A31C81806400077E1A /* Main.storyboard */,
 				904A77A91C81806400077E1A /* Assets.xcassets */,
@@ -136,6 +141,7 @@
 				90AEB24A1C8187760036A36C /* firesay-Bridging-Header.h */,
 				90AEB25A1C821C9C0036A36C /* ClarifaiClient.m */,
 				90AEB25B1C821C9C0036A36C /* ClarifaiClient.h */,
+				90AEB2631C8270B00036A36C /* Message.swift */,
 			);
 			path = firesay;
 			sourceTree = "<group>";
@@ -354,6 +360,8 @@
 				904A77A21C81806400077E1A /* ViewController.swift in Sources */,
 				904A77A01C81806400077E1A /* AppDelegate.swift in Sources */,
 				90AEB25C1C821C9C0036A36C /* ClarifaiClient.m in Sources */,
+				90AEB2641C8270B00036A36C /* Message.swift in Sources */,
+				90AEB2681C82AD820036A36C /* ImageDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
